@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" target="_blank" class="logo">Teacher Portal</a>
+        <nav class="navbar">
+            <ul class="navbar-list">
+                <li><a href="index.html" class="navbar-link">SignUp</a></li>
+                <li><a href="login.html" class="navbar-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="Form 1">
+        <h2>Teachers Login</h2>
+        <form onsubmit="login(event)">
+            <br><br>
+            <input type="text" id="name" required placeholder="FULL NAME"><br><br>
+            <input type="password" id="password" required placeholder="PASSWORD"><br><br>
+            <button type="submit">Login</button>
+        </form>
+        <p id="errMessage"></p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
