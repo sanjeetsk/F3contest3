@@ -22,19 +22,21 @@
     <div class="Form 2">
         <h2>Teachers Dashboard</h2>
         <br><br>
-        <h3>Welcome back : <span id="userName"></span></h3>
+        <h3 id="userName"></h3>
         <br><br>
-        <h3>Your Email ID : <span id="userEmail"></span></h3>
+        <h3 id="userEmail"></h3>
         <br><br>
         <h2>Change Password</h2>
         <form>
             <br><br>
             <input type="password" id="password" required placeholder="Old PASSWORD"><br><br>
-            <input type="password" id="newPpassword" required placeholder="New PASSWORD"><br><br>
-            <input type="password" id="newPassword" required placeholder="Confirm New PASSWORD"><br><br>
-            <input type="submit" value="Change">
-            <input type="submit" value="Logout">
+            <input type="password" id="newPassword" required placeholder="New PASSWORD"><br><br>
+            <input type="password" id="confirm-newPassword" required placeholder="Confirm New PASSWORD"><br><br>
+            <input type="submit" value="Change Password" id="submit">
         </form>
+        <p id="message"></p>
+        <br>
+        <input type="submit" value="Logout" id="logout">
     </div>
 
     <script src="script.js"></script>
