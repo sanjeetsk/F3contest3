@@ -42,6 +42,7 @@ li{
 input[type=text], input[type=email], input[type=password], input[type=confirm-password],
 submit {
 width: 90vw;
+height: 40px;
 border: 1px solid #ccc;
 border-radius: 0.5vw;
 box-sizing: border-box;
@@ -49,8 +50,9 @@ font-size: 1rem;
 color: black;
 }
 
-input[type=submit] {
-width: 20%;
+input[type=submit], button[type=submit] {
+width: 20vw;
+height: 40px;
 background-color: #ccc;
 color: black;
 border: none;

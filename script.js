@@ -1,3 +1,4 @@
+var isLoggedIn = false;
 
 function signup(event) {
     event.preventDefault();
@@ -19,6 +20,7 @@ function signup(event) {
         errorMessage.innerText = "Please enter a valid email address.";
         return;
     }
+    
     if (password !== confirmPassword) {
         errorMessage.innerText = "Passwords do not match.";
         return;
@@ -36,7 +38,18 @@ function signup(event) {
     };
 
     //Get users from local storage or create empty array
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : [];
+
+    // function userAlreadyExist() {
+    //     let flag = false;
+    //     users.forEach((user) => {
+    //         if (user.email == email) {
+    //             flag = true;
+    //         }
+    //     })
+    
+    //     return flag
+    // }
 
     //Check if user with the same email aready exists
     if (users.some(u => u.email === email)) {
@@ -54,96 +67,10 @@ function signup(event) {
     window.location.href = "./login.html";
 }
 
+
 function isValidEmail(email) {
     // Basic email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
-
-function login(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const password = document.getElementById("password").value;
-    const errMessage = document.getElementById("errMessage");
-
-    //Validate inputs
-    if (name.trim() === "") {
-        errMessage.innerText = "Please enter your name.";
-        return;
-    }
-
-    if (password.length < 8) {
-        errMessage.innerText = "Password must be at least 8 characters long.";
-        return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const currentUser = users.find(user => user.name === name && user.password === password);
-
-    if (!currentUser) {
-        errMessage.innerText = "User doesn't exist";
-        return;
-    }
-    else {
-        localStorage.setItem("currentUser",currentUser.email);
-        next(event);
-    }
-
-};
-
-
-function next(event) {
-    event.preventDefault();
-
-    window.location.href = "./Dashboard.html";
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const nameElement = document.getElementById("userName");
-    const emailElement = document.getElementById("userEmail");
-    const message = document.getElementById("message");
-
-    nameElement.innerText = "Welcome Back : " + users.name;
-    emailElement.innerText = "Your Email id : " + users.email;
-
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const oldPassword = document.getElementById("password").value;
-        const newPassword = document.getElementById("newPassword").value;
-        const confirmNewPassword = document.getElementById("confirm-newPassword").value;
-
-        if (newPassword !== confirmNewPassword) {
-            message.innerText = "Password must be same";
-            return;
-        }
-
-        if (oldPassword !== users.password) {
-            message.innerText = "Enter correct old password";
-            return;
-        }
-
-        if (newPassword.length < 8) {
-            message.innerText = "Password must be at least 8 characters long.";
-            return;
-        }
-
-        users.password = newPassword;
-        localStorage.setItem('users', JSON.stringify(users));
-        message.innerText = "Password changed successfully. ";
-        
-    });
-
-    const logoutButton = document.getElementById("logout");
-    logoutButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        localStorage.removeItem('users');
-        window.location.href = "./login.html";
-    });
-};
-    
-
 
